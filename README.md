@@ -78,15 +78,19 @@
 > -ErrorLog : 해당 가상호스트의 웹에러로그 파일 위치 <br>
 > -CustomLog : 해당 가상호스트의 웹로그파일 위치 <br>
 > 
+> <br>
+>
 > #### http 접근제어 
+> ```
 > <Directory "/www/html/admin"> <br>
 > Order Deny,Allow <br>
 > Deny from All <br>
 > Allow from 192.168.2.0/24 <br>
-> </Directory> <br>
-> - Order : Deny와 Allow 의 순서를 정한다.
-> - Allow,Deny 또는 Deny,Allow 둘 중에 하나를 적는다.
-> - 최종적으로 읽히는 정책이 동작.
+> </Directory>
+> ```
+> - Order : Deny와 Allow 의 순서를 정한다. <br>
+> - Allow,Deny 또는 Deny,Allow 둘 중에 하나를 적는다. <br>
+> - 최종적으로 읽히는 정책이 동작. <br>
 
 
 
