@@ -34,12 +34,50 @@
 >
 >
 > ### Apache(아파치) httpd.conf(설정파일)
-> 1. httpd.conf
+> #### httpd.conf
 > - 기본 설치 시 경로는 /etc/httpd에 설치가 되며, 설정 파일은 /etc/httpd/conf 경로의 httpd.conf 파일이 존재한다. <br>
 >   /etc란?
 >   - /etc와 /usr/etc 디렉토리는 시스템의 부팅, 셧다운 시에 필요한 파일들과 시스템의 전반에 걸친 설정 파일들 및 초기 스크립트 파일들이 있다. 시스템에 어떠한 문제가 발생한다거나, 시스템 전체 환경에 관한 설정을 바꾸기 위해서는 이들 디렉토리내에 포함되어 있는 파일들에 대하여 잘 알아야 한다. <br>
-> 2. 
-> <br>
+> #### httpd.conf값
+> 1. ServerRoot <br>
+> - 아파치의 기본 Root 경로이며, 절대경로로 설정해주어야 한다. <br>
+> 2. timeout [300 : default] <br>
+> - 클라이언트와 서버 간에 300초(5분) 동안 아무런 메시지가 발생하지 않으면 타임아웃을 시키고 연결을 끊는다. <br>
+> 3. KeepAlive [On : default / Off]
+> - 특정 클라이언트의 지속적인 요청 작업들을 계속해서 처리하도록 허용할 것 인가 아닌가에 대한 여부를 설정한다.(서버 요청이 많고 메모리를 많이 잡아먹는다면 Keepalive off 하는 것이 좋다.)
+> 4. KeepAliveTimeout [5 : default]
+> - KeepAlive가 On인 경우 유효한 값으로, 설정 시간(초)동안 요청이 없으면 타임아웃 시킵니다.
+> (낮을수록 동시접속 수를 늘릴 수 있습니다.)
+> 5. MaxKeepAliveRequests [100 : default]
+> Keepalive 값이 On인 경우 클라이언트와 연결된 작업의 최대 개수를 100개로 제한한다. 해당 회수를 초과하면 현재 프로세스는 종료되고 다른 프로세스가 처리한다. (0으로 설정하면 무제한 요청이 허용됩니다.)
+> 6. Directoryindex index.htm, index.html, index.php
+> - 웹 디렉토리 접근 시 인식되는 인덱스 파일의 순서를 index.htm, index.html, index.php 순으로 지정한다.
+> 7. Listen 1120
+> - 사용할 포트 지정
+> 8. ServerName [www.example.com : default]
+> - 서버의 도메인을 입력(도메인이 없다면 IP주소라도 꼭 적어야 한다.)
+> 9. UseCanonicalName [Off : default / On]
+> - On : 지정한 ServerName 를 사용합니다
+> - Off : 호스트네임과 포트를 사용합니다.
+> 10. DocumentRoot "/var/www/html/webadmin"
+> - 웹 문서가 위치하는 디렉토리를 지정
+> 11. SeverAdmin dukkoong@gmail.com
+> - 서버 관리자 이메일을 입력
+> 12. ExtendedStatus [Off : default / On]
+> - Apache의 상태를 모니터링 할 때, 자세한 상태정보 기능을 제공할 것 인지에 대한 설정입니다.
+(server-status에 영향을 줍니다.)
+> 13. User [apache : default] Group [apache : default]
+> -  Apache 자식 프로세스들의 실행소유자와 소유그룹을 설정하는 값입니다.
+(보안을 위해 nobody로 설정합니다.)
+> 14. NameVirtualHost [*:80]
+> - 이름기반 가상 호스트를 사용하겠다는 설정입니다
+> 15. <VirtualHost *:80> ~  </VirtualHost>
+> - ServerAdmin : 해당 가상호스트의 관리자 이메일 주소
+> - DocumentRoot : 해당 가상호스트의 홈페이지디렉토리 위치
+> - ServerName : 해당 가상호스트의 도메인명
+> - ErrorLog : 해당 가상호스트의 웹에러로그 파일 위치
+> - CustomLog : 해당 가상호스트의 웹로그파일 위치
+> 
    
 
 
