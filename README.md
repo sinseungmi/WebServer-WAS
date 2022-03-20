@@ -90,8 +90,110 @@
 > ```
 > - Order : Deny와 Allow 의 순서를 정한다. <br>
 > - Allow,Deny 또는 Deny,Allow 둘 중에 하나를 적는다. <br>
-> - 최종적으로 읽히는 정책이 동작. <br>
-
+> - 최종적으로 읽히는 정책이 동작. <br> <br>
+>
+> <br>
+>
+> ### Apache Tomcat 구조
+> **스크립트란?**
+>
+>-인터프리트 방식으로 동작하는 컴파일되지 않은 프로그램. 프로그램의 한 라인을 읽어 해석하고 실행하는 과정을 반복하도록 만들어진 프로그래밍 언어로 작성된 컴파일 되지 않은 파일에 저장된 프로그램. <br>
+> 쉽게 말하면, 텍스트 형식으로 저장되는 프로그램으로, 한줄씩 순차적으로 읽어 실행되도록 작성된 프로그램!
+>
+> **CATALINA**
+>
+> -톰켓은 여러개의 기능(부품)으로 구성한다. 톰캣의 코어 컴포넌트는 카탈리나라고 칭한다.카탈리나는 톰켓의 서블렛 스펙의 실질적인 구동을 제공한다. 톰켓 서버를 가동시킬 경우, 카탈리나를 구동 시킨 것이라 생각하면 된다.
+>
+> **Class Path**
+>
+> -클래스패스란 말 그대로 클래스를 찾기위한 경로이다. 자바에서 클래스패스의 의미도 똑같다. 즉, JVM이 프로그램을 실행할 때, 클래스파일을 찾는 데 기준이 되는 파일 경로를 말하는 것이다. 소스 코드(.java로 끝나는 파일)를 컴파일하면 소스 코드가 “바이트 코드”(바이너리 형태의 .class 파일)로 변환된다. java runtime(java 또는 jre)으로 이 .class 파일에 포함된 명령을 실행하려면, 먼저 이 파일을 찾을 수 있어야 한다. 이때 .class 파일을 찾을 때 classpath에 지정된 경로를 사용한다. classpath는 .class 파일이 포함된 디렉토리와 파일을 콜론으로 구분한 목록이다. java runtime은 이 classpath에 지정된 경로를 모두 검색해서 특정 클래스에 대한 코드가 포함된 .class 파일을 찾는다. 찾으려는 클래스 코드가 포함된 .class 파일을 찾으면 첫 번째로 찾은 파일을 사용한다. <br>
+>
+> <br>
+>
+> ### **톰캣 디렉토리 구조**
+>
+>
+> | /bin | Tomcat Server의 동작을 제어할 수 있는 스크립트 및 실행파일 포함      (sh 파일(유닉스 시스템)과 bat 파일(윈도우 시스템)은 기능적으로 동일하다.) |
+> | --- | --- |
+> | /conf | 설정 파일과 DTD와 연관된 파일이 존재한다. 가장 중요한 파일인 server.xml이 있으며 이 파일은 컨테이너의 주요 설정 파일이다. |
+> | /logs | 서버의 로그 파일이 저장되는 디렉토리이다. |
+> | /webapps | 톰캣이 제공하는 웹 애플리케이션의 기본 위치이다. (웹 어플리케이션 루트 폴더) |
+> | /lib | classpath에 추가되는 리소스가 위치한 디렉토리이다. |
+> | /work | Jsp 파일을 서블릿 형태로 변환한 java 파일과 class 파일이 저장되는 디렉토리이다. |
+> | /temp | JVM에 사용되는 임시 디렉토리이다. |
+> - bat 파일은 윈도우에서 실행하는 batch 파일, sh 파일은 유닉스 계열에서 실행하는 shell script 파일이다.
+>
+> <br>
+>
+> **bin 디렉토리 파일**
+> 
+>
+> | bootstrap.jar | Tomcat 서버가 구동될 때 사용되는 main() 메소드가 포함되어 있으며 클래스 로더가 클래스를 구현하는데에 필수적이다. |
+> | --- | --- |
+> | tomcat-juil.jar | 로깅을 구현하는 java.util.logging API를 포함하고 있는 클래스이다. |
+> | common-daemon.jar | Apache Commons Daemon 프로젝트에 필요한 클래스이다. Catalina.sh 파일에 의해 빌드되지 않으며 bootstrap.jar 파일에 의해 참조된다. |
+> | catalina.sh | CATALINA 서버의 제어 스크립트이다. |
+> | ciphers.sh | 지정된 알고리즘을 사용하는 다이제스트 암호를 설정하는 스크립트이다. |
+> | configtest.sh | CATALINA 서버의 설정 스크립트이다. |
+> | daemon.sh | Common Daemon에 사용되는 스크립트이다. |
+> | digest.sh | 지정된 알고리즘을 사용하는 다이제스트 암호를 설정하는 스크립트이다. |
+> | makebase.sh | Tomcat 실행에 필요한 분산 디렉토리 구조를 생성하는 스크립트이다. |
+> | setclasspath.sh | JAVA_HOME 또는 JRE_HOME이 세팅되지 않았을 경우 세팅한다. |
+> | shutdown.sh | CATALINA 서버를 중지하는 스크립트이다. |
+> | startup.sh | CATALINA 서버를 시작하는 스크립트이다. |
+> | tool-wrapper.sh | 커맨드 라인 도구에서 사용되는 Wrapper 스크립트이다. |
+> | version.sh | Tomcat의 정보를 표시해주는 스크립트이다. |
+>
+> <br>
+>
+> **conf 디렉토리 파일**
+> 
+> | catalina.policy | Tomcat의 보안 정책을 설정하는 파일이다. Catlina가 –security 옵션으로 실행될 때 시행되는 보안 정책을 설정할 수 있다. |
+> | --- | --- |
+> | catalina.properties | 서버를 시작할 때 검색하는 서버, 공유 로더, JAR 등의 정보를 포함한다. |
+> | context.xml | 세션, 쿠키 저장 경로등을 지정하는 설정 파일이다. |
+> | jaspic-providers.xml | 사용자 인증 제공 방법에 대해 정의한 파일 |
+> | logging.properties | Tomcat 인스턴스의 로깅 설정 파일이다.tomcat-juli.jar 라이브러리를 활용하여 로깅 서비스를 제공한다. |
+> | server.xml | Tomcat 설정에서 가장 중요한 파일이다. Service, Connector, Host 등과 같은 주요 기능을 설정할 수 있다. |
+> | tomcat-users.xml | Tomcat의 manager 기능을 사용하기 위해 사용자 권한을 설청하는 파일이다. |
+> | web.xml | Tomcat의 환경설정 파일이며 서블릿, 필터, 인코딩 등을 설정할 수 있다. |
+>
+> <br>
+>
+> **lib 디렉토리 파일**
+> 
+>
+> | annotations-api.jar | 자바EE 어노테이션 클래스 파일 |
+> | --- | --- |
+> | catalina.jar | Tomcat의 Catalina 서블릿 컨테이너를 구현하는 파일 |
+> | catalina-ant.jar | Tomcat Catalina Ant 작업 파일 |
+> | catalina-ha.jar | 고가용성 패키지 파일 |
+> | catalina-storeconfig.jar | 서버 상태의 흐름을 XML 설정파일로 생성한다. |
+> | catalina-tribes.jar | 그룹 커뮤니케이션 패키지 파일 |
+> | ecj-*.jar | 이클립스 JDT 자바 컴파일러 파일 |
+> | el-api.jar | EL 3.0 API 파일 |
+> | jasper.jar | Tomcat Jasper JSP 컴파일러와 런타임 파일 |
+> | jasper-el.jar | Tomcat Jasper EL 구현 파일 |
+> | jsp-api.jap | JSP 2.3 API 파일 |
+> | servlet-api.jar | Servlet 4.0 API 파일 |
+> | tomcat-api.jar | Tomcat에 의해 정의되는 몇몇 인터페이스 파일 |
+> | tomcat-coyote.jar | Tomcat connector와 유틸리티 클래스 파일 |
+> | tomcat-dpcp.jar | 데이터베이스 커넥션 풀을 구현하는 파일 |
+> | tomcat-i18n-**.jar | Tomcat 언어 패키지 파일 |
+> | tomcat-jdbc.jar | Tomcat JDBC pool로 알려진 대체 데이터베이스 커넥션 풀을 구현하는 파일 |
+> | tomcat-util.jar | Apache Tomcat의 다양한 컴포넌트에서 사용되는 일반 클래스 파일 |
+> | tomcat-websocket.jar | WebSocket 1.1 구현 파일 |
+> | websocket-api.jar | Websocket 1.1 API 파일 |
+>
+>
+> <br>
+>
+> 요구되는 형태로 웹 어플리케이션 보관소 생성을 용이하게 하기 위해서, 웹 어플리케이션의 "실행" 파일들(즉, 웹 어플리케이션을 실행할 때 톰캣이 사용하는 파일들)을 WAR 형식에서 요구하는 것과 같은 구성으로 정리하는게 편합니다. 이렇게 하려면, 웹 어플리케이션의 "문서 루트 document root" 디렉토리에 다음 내용으로 구성합니다 <br>
+>
+> - .html, *.jsp, 등. - 웹 어플리케이션에서 클라이언트 브라우저로 전송이 되는 HTML 과 JSP 페이지와 다른 파일들 (예를 들면 자바스크립트, 스타일시트, 이미지 같은). 대규모 어플리케이션에서 이 파일들을 서브디렉토리 체계로 나누어 놓을 수 있습니다. 그러나 규모가 작은 어플리케이션이라면 보통은 하나의 디렉토리에서 전체를 관리하는 것이 보다 단순하고 쉽습니다. <br> 
+> - /WEB-INF/web.xml - 웹 어플리케이션의 웹 어플리케이션 배치 설명자 Web Application Deployment Descriptor. 서블릿과 웹어플리케이션을 구성하는 다른 컴포넌트들을 설명하고, 각종 초기화 파라메터들과 서버 기능을 활용하기 위한 컨테이너가 관리하는 보안 제한 구역을 지정하는 XML 파일입니다. 다음 섹션에서 좀 더 자세히 알아보도록 하겠습니다. <br>
+> - /WEB-INF/classes/ - 이 디렉토리에는 웹 어플리케이션에서 사용하는 모든 자바 파일(그리고, 관련 자원)이 들어있습니다. 서블릿과 비서블릿 클래스 파일들이며 jar 형태로 묶여있지 않은 것입니다. 패키지가 선언된 클래스라면 /WEB-INF/classes/ 를 기준으로 패키지의 디렉토리를 만들어 구성하면 됩니다. 예를 들어, 클래스명이 com.mycompany.mypackage.MyServlet 라면 파일의 저장경로는 /WEB-INF/classes/com/mycompany/mypackage/MyServlet.class 이 됩니다. <br>
+> - /WEB-INF/lib/ - 이 디렉토리에는 웹어플리케이션에서 사용하는 자바 클래스파일을 포함하는 JAR 파일들이 위치합니다. 외부 클래스 라이브러리나 JDBC 드라이버 같은 것들입니다. <br>
 
 
 
