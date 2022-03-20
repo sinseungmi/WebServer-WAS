@@ -112,9 +112,9 @@
 >
 > ### **톰캣 디렉토리 구조**
 >
->
-> | /bin | Tomcat Server의 동작을 제어할 수 있는 스크립트 및 실행파일 포함      (sh 파일(유닉스 시스템)과 bat 파일(윈도우 시스템)은 기능적으로 동일하다.) |
+> | 디렉토리 | 설명 |
 > | --- | --- |
+> |/bin |Tomcat Server의 동작을 제어할 수 있는 스크립트 및 실행파일 포함      (sh 파일(유닉스 시스템)과 bat 파일(윈도우 시스템)은 기능적으로 동일하다.) |
 > | /conf | 설정 파일과 DTD와 연관된 파일이 존재한다. 가장 중요한 파일인 server.xml이 있으며 이 파일은 컨테이너의 주요 설정 파일이다. |
 > | /logs | 서버의 로그 파일이 저장되는 디렉토리이다. |
 > | /webapps | 톰캣이 제공하는 웹 애플리케이션의 기본 위치이다. (웹 어플리케이션 루트 폴더) |
@@ -127,9 +127,9 @@
 >
 > **bin 디렉토리 파일**
 > 
->
-> | bootstrap.jar | Tomcat 서버가 구동될 때 사용되는 main() 메소드가 포함되어 있으며 클래스 로더가 클래스를 구현하는데에 필수적이다. |
+> | 파일 | 설명 |
 > | --- | --- |
+> | bootstrap.jar | Tomcat 서버가 구동될 때 사용되는 main() 메소드가 포함되어 있으며 클래스 로더가 클래스를 구현하는데에 필수적이다. |
 > | tomcat-juil.jar | 로깅을 구현하는 java.util.logging API를 포함하고 있는 클래스이다. |
 > | common-daemon.jar | Apache Commons Daemon 프로젝트에 필요한 클래스이다. Catalina.sh 파일에 의해 빌드되지 않으며 bootstrap.jar 파일에 의해 참조된다. |
 > | catalina.sh | CATALINA 서버의 제어 스크립트이다. |
@@ -148,8 +148,9 @@
 >
 > **conf 디렉토리 파일**
 > 
-> | catalina.policy | Tomcat의 보안 정책을 설정하는 파일이다. Catlina가 –security 옵션으로 실행될 때 시행되는 보안 정책을 설정할 수 있다. |
+> | 파일 | 설명 |
 > | --- | --- |
+> | catalina.policy | Tomcat의 보안 정책을 설정하는 파일이다. Catlina가 –security 옵션으로 실행될 때 시행되는 보안 정책을 설정할 수 있다. |
 > | catalina.properties | 서버를 시작할 때 검색하는 서버, 공유 로더, JAR 등의 정보를 포함한다. |
 > | context.xml | 세션, 쿠키 저장 경로등을 지정하는 설정 파일이다. |
 > | jaspic-providers.xml | 사용자 인증 제공 방법에 대해 정의한 파일 |
@@ -162,9 +163,9 @@
 >
 > **lib 디렉토리 파일**
 > 
->
-> | annotations-api.jar | 자바EE 어노테이션 클래스 파일 |
+> | 파일 | 설명 |
 > | --- | --- |
+> | annotations-api.jar | 자바EE 어노테이션 클래스 파일 |
 > | catalina.jar | Tomcat의 Catalina 서블릿 컨테이너를 구현하는 파일 |
 > | catalina-ant.jar | Tomcat Catalina Ant 작업 파일 |
 > | catalina-ha.jar | 고가용성 패키지 파일 |
